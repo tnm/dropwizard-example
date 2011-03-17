@@ -1,0 +1,7 @@
+.idea
+lib_managed
+src_managed
+project/boot
+target
+project/plugins/project/build.properties
+*.iml
