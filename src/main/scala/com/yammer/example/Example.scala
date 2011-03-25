@@ -1,13 +1,15 @@
 package com.yammer.example
 
 import cli.RenderCommand
+import config.TemplateModule
+import health.TemplateHealthCheck
 import com.yammer.dropwizard.Service
 import com.yammer.dropwizard.service.Jersey
-import config.TemplateModule
 
 object Example extends Service with Jersey {
   require(new TemplateModule)
   provide(new RenderCommand)
+  healthCheck[TemplateHealthCheck]
 
   def name = "example-service"
   
