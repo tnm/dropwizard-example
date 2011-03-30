@@ -10,6 +10,8 @@ object Example extends Service with Jersey {
   require(new TemplateModule)
   provide(new RenderCommand)
   healthCheck[TemplateHealthCheck]
+// enable this if you'd like to see what deadlock detection looks like
+//  manage[config.Derplocker]
 
   def name = "example-service"
   
