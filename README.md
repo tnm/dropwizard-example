@@ -12,7 +12,7 @@ Make sure you have [simple-build-tool](http://code.google.com/p/simple-build-too
 
 2. `cd` into the new directory.
 
-3. Now we'll easily build a fat JAR of our project and its dependencies. Do it thusly:
+3. Now we'll easily build a fat JAR of our project and its dependencies:
 		
 		sbt update	
 		sbt assembly 
