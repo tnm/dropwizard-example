@@ -1,7 +1,9 @@
 package com.yammer.example.cli
 
-import com.yammer.example.data.Template
 import com.yammer.dropwizard.cli.{Flag, ConfiguredCommand}
+import com.yammer.dropwizard.Service
+import com.codahale.fig.Configuration
+import com.yammer.example.config.TemplateFactory
 
 class RenderCommand extends ConfiguredCommand {
   def name = "render"
@@ -13,10 +15,9 @@ class RenderCommand extends ConfiguredCommand {
 
   override def options = Flag("i", "include-default", "Also render the template with the default name") :: Nil
 
-  def runWithConfigFile(opts: Map[String, List[String]],
-                        args: List[String]) = {
 
-    val template = injector.getInstance(classOf[Template])
+  def run(service: Service, config: Configuration, opts: Map[String, List[String]], args: List[String]) = {
+    val template = TemplateFactory.buildTemplate(config)
 
     if (opts.contains("include-default")) {
       log.info("DEFAULT => %s", template(None))

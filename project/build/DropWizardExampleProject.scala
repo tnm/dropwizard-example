@@ -24,7 +24,7 @@ class DropWizardExampleProject(info: ProjectInfo) extends DefaultProject(info)
   /**
    * Service Dependencies
    */
-  val dropWizard = "com.yammer" %% "dropwizard" % "0.0.3-SNAPSHOT"
+  val dropWizard = "com.yammer" %% "dropwizard" % "0.0.4-OVERHAUL-SNAPSHOT"
 
   /**
    * Test Dependencies

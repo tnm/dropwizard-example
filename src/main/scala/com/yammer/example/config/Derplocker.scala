@@ -1,6 +1,5 @@
 package com.yammer.example.config
 
-import com.google.inject.Singleton
 import com.yammer.dropwizard.lifecycle.Managed
 import com.codahale.logula.Logging
 
@@ -8,7 +7,6 @@ import com.codahale.logula.Logging
  * A total doofus class which intentionally creates a deadlock so as to provide
  * an example of what Metrics' deadlock detection looks like in a healthcheck.
  */
-@Singleton
 class Derplocker extends Managed with Logging {
   val lockA = new Object
   val lockB = new Object
