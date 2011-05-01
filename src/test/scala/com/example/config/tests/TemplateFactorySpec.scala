@@ -2,13 +2,13 @@ package com.example.config.tests
 
 import com.codahale.simplespec.Spec
 import io.Source
-import com.yammer.example.config.TemplateModule
 import com.yammer.example.data.Template
 import com.codahale.fig.{ConfigurationException, Configuration}
+import com.yammer.example.config.TemplateFactory
 
-object TemplateModuleSpec extends Spec {
+object TemplateFactorySpec extends Spec {
   class `A config file with a template and a default name` {
-    val config = new Configuration(Source.fromString("""
+    implicit val config = new Configuration(Source.fromString("""
       {
         "example": {
           "template": "Hello there %s.",
@@ -17,15 +17,13 @@ object TemplateModuleSpec extends Spec {
       }
     """))
 
-    val module = new TemplateModule
-
     def `should produce a template with a default name` {
-      module.provideTemplate(config) must beEqualTo(Template("Hello there %s.", "dude"))
+      TemplateFactory.buildTemplate must beEqualTo(Template("Hello there %s.", "dude"))
     }
   }
 
   class `A config file with a template and no default name` {
-    val config = new Configuration(Source.fromString("""
+    implicit val config = new Configuration(Source.fromString("""
       {
         "example": {
           "template": "Hello there %s."
@@ -35,15 +33,13 @@ object TemplateModuleSpec extends Spec {
       )
     )
 
-    val module = new TemplateModule
-
     def `should produce a template with a default name` {
-      module.provideTemplate(config) must beEqualTo(Template("Hello there %s.", "Stranger"))
+      TemplateFactory.buildTemplate must beEqualTo(Template("Hello there %s.", "Stranger"))
     }
   }
 
   class `A config file with no template` {
-    val config = new Configuration(Source.fromString("""
+    implicit val config = new Configuration(Source.fromString("""
       {
         "example": {
         }
@@ -52,10 +48,8 @@ object TemplateModuleSpec extends Spec {
       )
     )
 
-    val module = new TemplateModule
-
     def `should throw an exception` {
-      module.provideTemplate(config) must throwA[ConfigurationException]
+      TemplateFactory.buildTemplate must throwA[ConfigurationException]
     }
   }
 }
