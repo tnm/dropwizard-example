@@ -6,7 +6,8 @@ import com.yammer.example.data.{Saying, Template}
 
 object HelloWorldResourceSpec extends Spec {
   class `Saying hello to the world` {
-    val resource = new HelloWorldResource(Template("Hello there %s.", "stranger"))
+    implicit val template = Template("Hello there %s.", "stranger")
+    val resource = new HelloWorldResource
 
     def `should return a saying with a unique ID` {
       resource.sayHello(None) must beEqualTo(Saying(1, "Hello there stranger."))
