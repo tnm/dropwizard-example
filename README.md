@@ -23,7 +23,7 @@ Make sure you have [simple-build-tool](http://code.google.com/p/simple-build-too
 		
 4. Start the HTTP server, using the provided configuration file. 
 
-		java -jar target/scala_2.8.1/dropwizard-example-assembly-1.0-SNAPSHOT.jar server example.conf.template
+		java -jar target/scala_2.8.1/dropwizard-example-assembly-1.0-OVERHAUL-SNAPSHOT.jar server example.conf.template
 
 5. Open up your browser and point it at `http://localhost:8080/hello-world`.
    Boom.
