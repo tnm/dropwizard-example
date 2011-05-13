@@ -8,7 +8,7 @@ import com.yammer.example.config.TemplateFactory
 
 object TemplateFactorySpec extends Spec {
   class `A config file with a template and a default name` {
-    implicit val config = new Configuration(Source.fromString("""
+    private implicit val config = new Configuration(Source.fromString("""
       {
         "example": {
           "template": "Hello there %s.",
@@ -17,13 +17,13 @@ object TemplateFactorySpec extends Spec {
       }
     """))
 
-    def `should produce a template with a default name` {
+    def `should produce a template with a default name` = {
       TemplateFactory.buildTemplate must beEqualTo(Template("Hello there %s.", "dude"))
     }
   }
 
   class `A config file with a template and no default name` {
-    implicit val config = new Configuration(Source.fromString("""
+    private implicit val config = new Configuration(Source.fromString("""
       {
         "example": {
           "template": "Hello there %s."
@@ -33,13 +33,13 @@ object TemplateFactorySpec extends Spec {
       )
     )
 
-    def `should produce a template with a default name` {
+    def `should produce a template with a default name` = {
       TemplateFactory.buildTemplate must beEqualTo(Template("Hello there %s.", "Stranger"))
     }
   }
 
   class `A config file with no template` {
-    implicit val config = new Configuration(Source.fromString("""
+    private implicit val config = new Configuration(Source.fromString("""
       {
         "example": {
         }
@@ -48,7 +48,7 @@ object TemplateFactorySpec extends Spec {
       )
     )
 
-    def `should throw an exception` {
+    def `should throw an exception` = {
       TemplateFactory.buildTemplate must throwA[ConfigurationException]
     }
   }
