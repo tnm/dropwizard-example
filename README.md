@@ -12,15 +12,13 @@ Make sure you have [simple-build-tool](http://code.google.com/p/simple-build-too
 
 2. `cd` into the new directory.
 
-3. Now we'll easily build a fat JAR of our project and its dependencies:
+3. Now we'll easily build a fat JAR of our project and its dependencies. The `sbt assembly` command uses 
+   [assembly-sbt](https://github.com/codahale/assembly-sbt) (included with dropwizard) to handle the hard work. 
+   That JAR should end up somewhere like `target/scala_2.8.1/dropwizard-example-assembly-1.0-SNAPSHOT.jar`
         
         sbt update    
         sbt assembly 
-   
-   The `sbt assembly` command uses [assembly-sbt](https://github.com/codahale/assembly-sbt) (included with dropwizard) 
-   to handle the hard work. That JAR should end up somewhere like 
-   `target/scala_2.8.1/dropwizard-example-assembly-1.0-SNAPSHOT.jar`
-        
+       
 4. Start the HTTP server, using the provided configuration file. 
 
         java -jar target/scala_2.8.1/dropwizard-example-assembly-1.0-SNAPSHOT.jar server example.conf.template
